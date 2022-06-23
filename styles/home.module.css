@@ -62,3 +62,29 @@
     gap: 20px;
     flex-wrap: wrap;
 }
+
+@media screen and (max-width : 400px) {
+    .yellow {
+        width: 0;
+    }
+    .main1 {
+        width: 90%;
+        height: auto;
+        padding:0;
+        margin: 20px auto;
+    }
+    .main1 h1 {
+        padding: 10px;
+    }
+    .input {
+        width: 100%;
+    }
+    .main h1{
+        border-right: 3px solid var(--yellow);
+        padding: 10px;
+        text-align: center;
+    }
+    .main button {
+        width: 100%;
+    }
+}

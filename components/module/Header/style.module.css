@@ -30,3 +30,21 @@
    color : #000;
    margin-left: 30px;
 }
+
+@media screen and (max-width: 400px) {
+   .profile img {
+      display: none;
+   }
+   .profile p {
+      background-color: white;
+      padding: 10px;
+   }
+   .header {
+      width: 100%;
+      padding: 30px;
+      background-color: var(--yellow);
+   }
+   .header ul li {
+      margin-right: 10px;
+   }
+}
