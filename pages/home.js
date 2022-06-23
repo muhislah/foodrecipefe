@@ -6,7 +6,7 @@ import Footer from "../components/module/Footer"
 import Header from "../components/module/Header/Header"
 import style from "../styles/home.module.css"
 
-const home = () => {
+const Home = () => {
   const fetchdata = async () => {
     const result = await axios.get(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/')
     setData(result.data.data)
@@ -45,4 +45,4 @@ const home = () => {
   )
 }
 
-export default home
+export default Home
