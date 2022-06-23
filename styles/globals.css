@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'air bnb cereal';
+  src: url('../public/fonts/AirbnbCereal_W_Bk.otf');
+}
+:root {
+  --yellow : #EFC81A;
+  --blue: #2E266F;
+  --grey:  #3F3A3A;
+  --faded : #696F79;
+
+}
+* {
+  font-family: 'air bnb cereal';
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family:'air bnb cereal', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}

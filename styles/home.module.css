@@ -1,0 +1,64 @@
+.yellow {
+    width: 30%;
+    height: 100vh;  
+    background-color: var(--yellow);
+    position: absolute;
+    right: 0%;
+    z-index: -1;
+}
+.image img{
+    width: 100%;
+    position: absolute;
+    left: -50%;
+    bottom: 15%;    
+}
+.sawi {
+    transform: scale(0.7);
+    bottom: 25% !important;
+}
+.main1 {
+    height: calc(100vh - 80px);
+    color : var(--blue);
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    padding-left: 10%;
+}
+.main1 h1 {
+    font-size: 40px;
+    padding-top: 18vh;
+    margin: 0;
+}
+.input {
+    height: 50px;
+    width: 35%;
+    border: 1px solid var(--yellow);
+    padding-left: 10px;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+.input:focus-visible {
+    outline: none;
+    border: none;
+    box-shadow: 0 0 6px var(--faded);
+}
+.main {
+        color : var(--blue);
+        width: 100%;
+        position: relative;
+        top: -20px;
+        left: 0;
+        padding: 10%;
+}
+.main h1 {
+    border-left: 3px solid var(--yellow);
+    padding-left: 30px;
+}
+.container {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}

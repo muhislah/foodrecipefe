@@ -1,0 +1,61 @@
+.profile {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    margin: 50px auto;
+    display: flex;
+}
+.edit {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+}
+.menu {
+    width: 100%;
+    position: absolute;
+    bottom : 0;
+    transform: translateY(100%);
+    left: 0;
+    background-color: #E7E7E7;
+    border-radius: 4px;
+    display: block;
+    transition: all 200ms ease-out;
+}
+
+.menuActive {
+    display: none;
+}
+
+.menu p {
+    font-size: 12px;
+    margin:5px 5px;
+    text-align: center;
+}
+
+.navigation {
+    width: 80%;
+    margin: 10px auto 30px;
+}
+
+.navigation ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 0;
+    padding : 0;
+}
+.navigation ul li {
+    display: inline-block;
+    cursor: pointer;
+}
+.recipeActive {
+    font-weight: 700;
+}
+.area {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,32 @@
+.header {
+   width: 100%;
+   padding: 0 10%;
+   height: 80px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+}
+.header ul {
+   list-style: none;
+   padding :0;
+}
+.header ul li {
+   display: inline-block;
+   margin-right: 35px;
+}
+.profile {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+}
+.profile img {
+   width: 50px;
+   height: 50px;
+}
+.profile p {
+   filter : grayscale(100%);
+   color : #000;
+   margin-left: 30px;
+}

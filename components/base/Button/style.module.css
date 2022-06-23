@@ -1,0 +1,8 @@
+.button {
+    height: 50px;
+    background-color: var(--yellow);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+}
