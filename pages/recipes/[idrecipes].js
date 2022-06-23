@@ -12,7 +12,7 @@ const idrecipes = () => {
     const { idrecipes } = router.query
     const [data, setData] = useState()
     const fetchdata = async (idrecipes) => {
-        const result = await axios.get('http://localhost:5000/recipe/'+idrecipes)
+        const result = await axios.get(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/'+idrecipes)
         const data = result.data.data[0]
         setData(data)
         console.log(data)

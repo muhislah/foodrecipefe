@@ -43,7 +43,7 @@ const Add = () => {
           'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im11aGlzYWhAZ21haWwuY29tIiwiaWQiOiI5MDc0MjFiMC05NmUyLTRiMTgtODllZC00NDllMDE3NjUxNWUiLCJ0eXBlIjoiYWNjZXNzLXRva2VuIiwiaWF0IjoxNjU1OTQxOTM3LCJleHAiOjE2NTYwMjgzMzd9.ZzakJOW7bgiayv7oit5yysve-0bR2bxqDt-wHeX-PbE`
         }
       }
-      const result = await axios.post('http://localhost:5000/recipe/add', data , config)
+      const result = await axios.post(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/add', data , config)
       setUploading(false)
       alert('Add New Recipe Success')
       router.push('/home')

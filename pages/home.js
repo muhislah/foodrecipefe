@@ -8,13 +8,13 @@ import style from "../styles/home.module.css"
 
 const home = () => {
   const fetchdata = async () => {
-    const result = await axios.get('http://localhost:5000/recipe/')
+    const result = await axios.get(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/')
     setData(result.data.data)
   }
   const [data, setData] = useState([])
   useEffect(() => {
     fetchdata()
-  }, [data])
+  }, [])
   return (
     <>
       <div className={style.yellow}>

@@ -13,7 +13,8 @@ const Card = ({title, id, image}) => {
     }
     try {
       console.log(id)
-      const result = await axios.delete('http://localhost:5000/recipe/'+id_recipe, config)
+      const result = await axios.delete(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/'+id_recipe, config)
+      alert('Delete Success')
       router.push('/home')
     } catch (error) {
       console.log(error)

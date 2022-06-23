@@ -13,7 +13,7 @@ const Profile = () => {
     const [data, setData] = useState([])
     const fetchData = async () => {
         try {
-            const result = await axios.get('http://localhost:5000/recipe/')
+            const result = await axios.get(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/')
             setData(result.data.data)
         } catch (error) {
             console.log(error)

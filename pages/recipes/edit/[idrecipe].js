@@ -9,7 +9,7 @@ import Header from '../../../components/module/Header/Header'
 const Edit = () => {
     const fetchData = async () => {
         try {
-            const result = await axios.get('http://localhost:5000/recipe/' + router.query.idrecipe)
+            const result = await axios.get(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/' + router.query.idrecipe)
             setDataGlo(result.data.data[0])
             console.log(dataGlo)
         } catch (error) {
@@ -58,7 +58,7 @@ const Edit = () => {
                     'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im11aGlzYWhAZ21haWwuY29tIiwiaWQiOiI5MDc0MjFiMC05NmUyLTRiMTgtODllZC00NDllMDE3NjUxNWUiLCJ0eXBlIjoiYWNjZXNzLXRva2VuIiwiaWF0IjoxNjU1OTQxOTM3LCJleHAiOjE2NTYwMjgzMzd9.ZzakJOW7bgiayv7oit5yysve-0bR2bxqDt-wHeX-PbE`
                 }
             }
-            const result = await axios.put('http://localhost:5000/recipe/'+idrecipe, data, config)
+            const result = await axios.put(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/'+idrecipe, data, config)
             setUploading(false)
             alert('Edit Recipe Success')
             router.push('/home')
