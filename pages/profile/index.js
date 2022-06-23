@@ -46,7 +46,7 @@ const Profile = () => {
                 </ul>
                 <div className={style.area}>
                     {
-                        data ? data.map((recipe) => <Card title={recipe.title} id={recipe.id} image={recipe.image}/>) : <h1>Sorry No Recipe Found</h1>
+                        data ? data.map((recipe) => <Card key={recipe.id} title={recipe.title} id={recipe.id} image={recipe.image}/>) : <h1>Sorry No Recipe Found</h1>
                     }
                 </div>
             </div>

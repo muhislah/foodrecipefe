@@ -35,7 +35,7 @@ const Home = () => {
         <h1>Recently Recipe</h1>
         <div className={style.container}>
           {
-            data ? data.map((recipe) => <Card title={recipe.title} id={recipe.id} image={recipe.image}/>) : <h1>Sorry No Recipe Found</h1>
+            data ? data.map((recipe) => <Card key={recipe.id} title={recipe.title} id={recipe.id} image={recipe.image}/>) : <h1>Sorry No Recipe Found</h1>
           }
           
         </div>

@@ -29,7 +29,7 @@ const Idrecipes = () => {
             <div className={style.ingredient}>
                 <h3>Ingredient</h3>
                    {
-                    data ? data.ingredient.map(item => <p>{item}</p> ) : 'No Ingredient'
+                    data ? data.ingredient.map(item => <p key={item}>{item}</p> ) : 'No Ingredient'
                    } 
             </div>
             <div className={style.video}>
