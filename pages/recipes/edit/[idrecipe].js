@@ -6,23 +6,22 @@ import Button from '../../../components/base/Button/Index'
 import Footer from '../../../components/module/Footer'
 import Header from '../../../components/module/Header/Header'
 
-const Edit = () => {
+const Edit = ({ isLogin }) => {
     const fetchData = async () => {
         try {
-            const result = await axios.get(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/' + router.query.idrecipe)
+            const result = await axios.get(process.env.NEXT_PUBLIC_BACKEND_API + '/recipe/' + router.query.idrecipe)
             setDataGlo(result.data.data[0])
             console.log(dataGlo)
         } catch (error) {
             console.log(error)
         }
     }
-
     useEffect(() => {
         console.log('fetching data .. from db')
         fetchData()
     }, [])
     const router = useRouter()
-    const {idrecipe} = router.query
+    const { idrecipe } = router.query
     const [dataGlo, setDataGlo] = useState()
     const [uploading, setUploading] = useState(false)
     const [image, setImage] = useState({})
@@ -56,9 +55,9 @@ const Edit = () => {
                 headers: {
                     'content-type': 'multipart/form-data'
                 },
-                withCredentials : true
+                withCredentials: true
             }
-            const result = await axios.put(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/'+idrecipe, data, config)
+            const result = await axios.put(process.env.NEXT_PUBLIC_BACKEND_API + '/recipe/' + idrecipe, data, config)
             setUploading(false)
             alert('Edit Recipe Success')
             router.push('/home')
@@ -70,7 +69,7 @@ const Edit = () => {
     }
     return (
         <>
-            <Header />
+            <Header isLogin={isLogin}/>
             <main className={style.main}>
                 <h3 style={{ margin: "20px auto" }}>Edit Recipes</h3>
                 <div className={style.boxImage}>
@@ -92,6 +91,25 @@ const Edit = () => {
             <Footer />
         </>
     )
+}
+
+export const getServerSideProps = async (context) => {
+    const { token } = context.req.cookies
+
+    if (!token) {
+        return {
+            redirect: {
+                destination: '/auth/login',
+                permanent: true
+            }
+        }
+    }
+
+    return {
+        props: {
+            isLogin: true
+        }
+    }
 }
 
 export default Edit

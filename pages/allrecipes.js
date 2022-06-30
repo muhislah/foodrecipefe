@@ -11,7 +11,7 @@ const Allrecipes = ({ data, isLogin}) => {
     <>
       <Header isLogin={isLogin} />
       <main className={style.main} id="recipes">
-        <h1>Recently Recipe</h1>
+        <h1>All Recipes</h1>
         <div className={style.container}>
           {
             data ? data.map((recipe) => <CardHome key={recipe.id} title={recipe.title} id={recipe.id} image={recipe.image} />) : <h1>Sorry No Recipe Found</h1>

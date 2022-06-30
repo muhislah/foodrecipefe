@@ -1,27 +1,35 @@
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './style.module.css'
 
 const Sorter = () => {
     const router = useRouter()
-    const [sort, setSort] = useState('title')
-    const handleSort = (e) => {
-        setSort(e.target.value)
+    const [sortby, setSortby] = useState('title')
+    const [sort, setSort] = useState('asc')
+    useEffect(() => {
         router.push({
             pathname: '/home',
             hash: 'recipes',
             query: {
                 ...router.query,
+                sortby: sortby,
                 sort : sort
             }
         })
-    }
+    }, [sortby, sort])
+
     return (
-        <select name="sort" id="sort" className={style.minimal} onChange={(e) => handleSort(e)}>
-            <option value="title">Title</option>
-            <option value="post_at">Date</option>
-            <option value="id_user">User</option>
-        </select>
+        <div className={style.group}>
+            <select name="sortby" id="sortby" className={style.minimal} onChange={(e) => setSortby(e.target.value)}>
+                <option value="title">Title</option>
+                <option value="post_at">Date</option>
+                <option value="id_user">User</option>
+            </select>
+            <select name="sort" id="sort" className={style.minimal} onChange={(e) => setSort(e.target.value)}>
+                <option value="asc">ASC</option>
+                <option value="desc">DESC</option>
+            </select>
+        </div>
     )
 }
 
