@@ -29,6 +29,7 @@
     font-size: 40px;
     padding-top: 18vh;
     margin: 0;
+    
 }
 .input {
     height: 50px;
@@ -54,6 +55,7 @@
 .main h1 {
     border-left: 3px solid var(--yellow);
     padding-left: 30px;
+    position: relative;
 }
 .container {
     margin-top: 30px;

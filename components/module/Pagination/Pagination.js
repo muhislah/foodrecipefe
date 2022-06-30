@@ -16,12 +16,10 @@ const Pagination = ({totalPage}) => {
          }
       })
    },[currentPage])
-  console.log(currentPage)
    return (
     <div className={style.pagination}>
       {
          totalPage.map((data) => {
-            console.log(data)
             return <button className={style.buttonActive} key={data} onClick={() =>setCurrentPage(data)}>{data}</button>
          })
       }

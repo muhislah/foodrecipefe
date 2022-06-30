@@ -4,6 +4,7 @@ import CardHome from "../components/module/CardHome"
 import Footer from "../components/module/Footer"
 import Header from "../components/module/Header/Header"
 import Pagination from "../components/module/Pagination/Pagination"
+import Sorter from "../components/module/Sorter"
 import style from "../styles/home.module.css"
 
 const Home = ({ data, isLogin, pagination }) => {
@@ -45,7 +46,7 @@ const Home = ({ data, isLogin, pagination }) => {
         </form>
       </main>
       <main className={style.main} id="recipes">
-        <h1>Recently Recipe</h1>
+        <h1>Recently Recipe <Sorter /></h1>
         <div className={style.container}>
           {
             data ? data.map((recipe) => <CardHome key={recipe.id} title={recipe.title} id={recipe.id} image={recipe.image} />) : <h1>Sorry No Recipe Found</h1>
@@ -63,6 +64,7 @@ const Home = ({ data, isLogin, pagination }) => {
 export const getServerSideProps = async (context) => {
   const search = context.query.search || ""
   const page = context.query.page
+  const sort = context.query.sort
   const data = await fetch(process.env.NEXT_PUBLIC_BACKEND_API + '/recipe?search='+search+'&page='+page)
   const result = await data.json()
   const { token } = context.req.cookies
