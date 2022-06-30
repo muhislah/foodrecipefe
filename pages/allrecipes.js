@@ -30,7 +30,7 @@ export const getStaticProps = async (context) => {
   return {
     props: {
       data: result.data,
-      isLogin : false,
+      isLogin : true,
   }
 }
 }
