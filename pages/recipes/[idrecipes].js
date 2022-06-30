@@ -36,7 +36,7 @@ const Idrecipes = ({isLogin}) => {
                 <h3>Video Steps</h3>
                 {
                     data ? (
-                        <video width="720" controls>
+                        <video width="100%" controls>
                             <source src={data.video} type="video/mp4" />
                             Your browser does not support HTML video.
                         </video>

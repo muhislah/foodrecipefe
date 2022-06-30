@@ -25,7 +25,7 @@ const DetailRecipe = ({isLogin, recipe}) => {
                 <h3>Video Steps</h3>
                 {
                     recipe?.video ? (
-                        <video width="720" controls>
+                        <video width="100%" controls>
                             <source src={recipe.video} type="video/mp4" />
                             Your browser does not support HTML video.
                         </video>
