@@ -54,9 +54,9 @@ const Edit = () => {
             data.append('video', video.file)
             const config = {
                 headers: {
-                    'content-type': 'multipart/form-data',
-                    'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im11aGlzYWhAZ21haWwuY29tIiwiaWQiOiI5MDc0MjFiMC05NmUyLTRiMTgtODllZC00NDllMDE3NjUxNWUiLCJ0eXBlIjoiYWNjZXNzLXRva2VuIiwiaWF0IjoxNjU1OTQxOTM3LCJleHAiOjE2NTYwMjgzMzd9.ZzakJOW7bgiayv7oit5yysve-0bR2bxqDt-wHeX-PbE`
-                }
+                    'content-type': 'multipart/form-data'
+                },
+                withCredentials : true
             }
             const result = await axios.put(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/'+idrecipe, data, config)
             setUploading(false)
@@ -74,7 +74,7 @@ const Edit = () => {
             <main className={style.main}>
                 <h3 style={{ margin: "20px auto" }}>Edit Recipes</h3>
                 <div className={style.boxImage}>
-                    <img src={image.preview ? image.preview : dataGlo ? dataGlo.image : ""} alt="" width='70px' />
+                    <img src={image.preview ? image.preview : dataGlo ? dataGlo.image : ""} alt="" width='100%' />
                     <input type="file" name="image" accept='image/*' onChange={handleImage} />
                 </div>
                 <input type="text" placeholder='Title' defaultValue={dataGlo && dataGlo.title} name="title" onChange={(e) => setTitle(e.target.value)} />

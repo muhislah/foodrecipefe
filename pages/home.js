@@ -1,20 +1,32 @@
-
-import axios from "axios"
+import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import Card from "../components/module/Card"
+import CardHome from "../components/module/CardHome"
 import Footer from "../components/module/Footer"
 import Header from "../components/module/Header/Header"
 import style from "../styles/home.module.css"
 
-const Home = () => {
-  const fetchdata = async () => {
-    const result = await axios.get(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/')
-    setData(result.data.data)
+const Home = ({ data, isLogin }) => {
+  const [search, setSearch] = useState('')
+  const router = useRouter()
+  // const [data, setData] = useState([])
+  // const fetchdata = async () => {
+  //   const result = await axios.get(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/')
+  //   setData(result.data.data)
+  // }
+  // useEffect(() => {
+  //   console.log('fetching..')
+  //   fetchdata()
+  // }, [])
+  const handleSearch = (e) => {
+    e.preventDefault()
+    router.push({
+      pathname: '/home',
+      hash : "recipes",
+      query : {
+        search : search
+      }
+    })
   }
-  const [data, setData] = useState([])
-  useEffect(() => {
-    fetchdata()
-  }, [])
   return (
     <>
       <div className={style.yellow}>
@@ -23,26 +35,38 @@ const Home = () => {
           <img src="/asset/img/plate.png" alt="" />
         </div>
       </div>
-      <Header />
+      <Header isLogin={isLogin} />
       <main className={style.main1}>
         <h1>Discover Recipe <br />
           & Delicious Food</h1>
-        <form onSubmit>
-          <input type="text" className={style.input} placeholder="Search Recipes" />
+        <form onSubmit={(e) => handleSearch(e)}>
+          <input type="text" className={style.input} placeholder="Search Recipes" onChange={(e) => setSearch(e.target.value)}/>
         </form>
       </main>
-      <main className={style.main}>
+      <main className={style.main} id="recipes">
         <h1>Recently Recipe</h1>
         <div className={style.container}>
           {
-            data ? data.map((recipe) => <Card key={recipe.id} title={recipe.title} id={recipe.id} image={recipe.image}/>) : <h1>Sorry No Recipe Found</h1>
+            data ? data.map((recipe) => <CardHome key={recipe.id} title={recipe.title} id={recipe.id} image={recipe.image} />) : <h1>Sorry No Recipe Found</h1>
           }
-          
         </div>
       </main>
       <Footer />
     </>
   )
+}
+
+export const getServerSideProps = async (context) => {
+  const search = context.query.search || ""
+  const data = await fetch(process.env.NEXT_PUBLIC_BACKEND_API + '/recipe?search='+search)
+  const result = await data.json()
+  const { token } = context.req.cookies
+  return {
+    props: {
+      data: result.data,
+      isLogin : token ? true : false
+  }
+}
 }
 
 export default Home

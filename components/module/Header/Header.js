@@ -1,9 +1,21 @@
 import React, { useState } from 'react'
 import style from './style.module.css'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
-const Header = () => {
-  const [isLogin, setIsLogin] = useState(true)
+const Header = ({isLogin}) => {
+  const router = useRouter()
+  const handleLogout = async () => {
+    try {
+      const result = await fetch('api/logout')
+      const{ logout } = await result.json()
+      if (logout) {
+        router.push('/auth/login')
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <>
       <div className={style.header}>
@@ -19,11 +31,17 @@ const Header = () => {
           </li>
         </ul>
         {
-          isLogin &&
-          <div className={style.profile}>
-            <img src="/asset/svg/profileicon.svg" alt="profile" />
-            <p><Link href="/auth/login">Login</Link></p>
-          </div>
+          !isLogin ?
+            <div className={style.profile}>
+              <Link href="/profile"><img src="/asset/svg/profileicon.svg" alt="profile" /></Link>
+              <p><Link href="/auth/login">Login</Link></p>
+            </div> :
+            <div className={style.profile}>
+              <Link href="/profile"><img src="/asset/svg/profileicon.svg" alt="profile" /></Link>
+              <p onClick={handleLogout} style={{
+                cursor: "pointer"
+              }}>Logout</p>
+            </div>
         }
 
       </div>

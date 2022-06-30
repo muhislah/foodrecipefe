@@ -1,11 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '../../components/base/Button/Index'
 import Input from '../../components/base/Input'
 import Logomask from '../../components/module/Logomask'
 import style from './../../styles/auth.module.css'
 import Link from 'next/link'
+import axios from 'axios'
+import { useRouter } from 'next/router'
 
 const Register = () => {
+  const router = useRouter()
+  const [user, setUser] = useState({
+    fullname : '',
+    email : '',
+    password : '',
+    phone : ''
+  })
+
+  const handleChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name] : e.target.value
+    })
+  }
+  const handleSubmit = async (e) => {
+    if(e) {
+      e.preventDefault()
+    }
+    try {
+      const config = {
+        withCredentials : true
+      }
+      const result = await axios.post(process.env.NEXT_PUBLIC_BACKEND_API+'/auth/register', user, config)
+      if(result.data.message == 'USER HAS BEEN REGISTERED') {
+        alert('USER HAS BEEN REGISTERED, PLEASE LOGIN')
+        router.push('/auth/login')
+      }else {
+        alert('REGISTER SUCCESS')
+        router.push('/auth/login')
+      }
+    } catch (error) {
+      
+    }
+  }
   return (
     <>
         <Logomask />
@@ -15,17 +51,19 @@ const Register = () => {
                 <p style={{textAlign:'center'}}>Please Register with Your Account</p>
                 <br />
                 <p>Name</p>
-                <Input type="text" placeholder="Name" />
-                <p>E-mail</p>
-                <Input type="text" placeholder="Enter your email" />
-                <p>Phone Number</p>
-                <Input type="text" placeholder="Enter your email" />
-                <p>Create New Password</p>
-                <Input type='password' placeholder="Enter your Password" />
-                <p>Type New Password</p>
-                <Input type='password' placeholder="Enter your Password" />
-                <br />
-                <Button title="Register" />
+                <form onSubmit={handleSubmit}>
+                  <Input type="text" placeholder="Name" onChange={handleChange} name="fullname" />
+                  <p>E-mail</p>
+                  <Input type="text" placeholder="Enter your email" onChange={handleChange} name="email"/>
+                  <p>Phone Number</p>
+                  <Input type="number" placeholder="Enter your phone Number" onChange={handleChange} name="phone"/>
+                  <p>Create New Password</p>
+                  <Input type='password' placeholder="Enter your Password" onChange={handleChange} name="password"/>
+                  <p>Type New Password</p>
+                  <Input type='password' placeholder="Retype your Password"/>
+                </form>
+                  <br />
+                  <Button title="Register" onClick={handleSubmit}/>
                 <br />
                 <p style={{textAlign:'center'}}>Already have account? <span><Link href='/auth/login'>Log in Here</Link></span> </p>
             </div>

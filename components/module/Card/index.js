@@ -3,13 +3,14 @@ import style from './style.module.css'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import axios from 'axios'
+import TwitchPlayer from 'react-player/twitch'
 
 const Card = ({title, id, image}) => {
+  const router = useRouter()
+  
   const handleDelete = async (id_recipe) => {
     const config = {
-      headers: {
-        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im11aGlzYWhAZ21haWwuY29tIiwiaWQiOiI5MDc0MjFiMC05NmUyLTRiMTgtODllZC00NDllMDE3NjUxNWUiLCJ0eXBlIjoiYWNjZXNzLXRva2VuIiwiaWF0IjoxNjU1OTQxOTM3LCJleHAiOjE2NTYwMjgzMzd9.ZzakJOW7bgiayv7oit5yysve-0bR2bxqDt-wHeX-PbE`
-      }
+      withCredentials : true
     }
     try {
       console.log(id)
@@ -21,15 +22,18 @@ const Card = ({title, id, image}) => {
     }
   }
 
-  const router = useRouter()
 
   return (
-    <div className={style.card}>
+    <div className={style.card}  >
         <div className={style.button}>
-          <button onClick={() => router.push('/recipes/edit/'+id)}>Edit</button>
-          <button onClick={() => handleDelete(id)}>Delete</button>
+          <div onClick={() => router.push('/recipes/edit/'+id)}>
+            <img src="/asset/svg/editcard.svg" alt="edit" />
+          </div>
+          <div onClick={() => handleDelete(id)}>
+          <img src="/asset/svg/deletecard.svg" alt="delete" />
+          </div>
         </div>
-        <Image src={image} layout='fill' objectFit='cover'/>
+        <Image src={image} layout='fill' objectFit='cover' />
         <h2 onClick={() => router.push('/recipes/'+id)}>{title ? title : 'Default Title'}</h2>
     </div>
   )

@@ -57,15 +57,16 @@
     padding: 20px;
 }
 .boxImage {
-    background-image: attr(src url);
     width: 100%;
     position: relative;
-    height: 200px;
+    height: 400px;
     background-color: #F6F5F4;
     display: flex;
+    overflow: hidden;
 }
 .boxImage img {
     margin: auto;
+    top: -50px;
 }
 .boxImage input {
     position: absolute;

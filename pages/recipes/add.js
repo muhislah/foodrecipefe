@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import Button from '../../components/base/Button/Index'
-import Input from '../../components/base/Input'
 import Footer from '../../components/module/Footer'
 import Header from '../../components/module/Header/Header'
 import style from './../../styles/recipes.module.css'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
-const Add = () => {
+const Add = ({isLogin}) => {
   const router = useRouter()
   const [uploading, setUploading] = useState(false)
   const [image, setImage] = useState({})
@@ -39,11 +38,15 @@ const Add = () => {
       data.append('video', video.file)
       const config = {
         headers: {
-          'content-type': 'multipart/form-data',
-          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im11aGlzYWhAZ21haWwuY29tIiwiaWQiOiI5MDc0MjFiMC05NmUyLTRiMTgtODllZC00NDllMDE3NjUxNWUiLCJ0eXBlIjoiYWNjZXNzLXRva2VuIiwiaWF0IjoxNjU1OTQxOTM3LCJleHAiOjE2NTYwMjgzMzd9.ZzakJOW7bgiayv7oit5yysve-0bR2bxqDt-wHeX-PbE`
-        }
+          'content-type': 'multipart/form-data'
+        },
+        withCredentials : true
       }
       const result = await axios.post(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/add', data , config)
+      if (result.data.message === 'token invalid'){
+        alert('Token Invalid, Add Recipe Failed, Please Login First')
+        return router.push('/auth/login')
+      }
       setUploading(false)
       alert('Add New Recipe Success')
       router.push('/home')
@@ -55,11 +58,16 @@ const Add = () => {
   }
   return (
     <>
-      <Header />
+      <Header isLogin={isLogin}/>
       <main className={style.main}>
         <h3 style={{ margin: "20px auto" }}>Add Recipes</h3>
         <div className={style.boxImage}>
-          <img src={image.preview ? image.preview : "/asset/svg/addimage.svg"} alt="" width='70px' />
+          {
+            image.preview ? 
+            <img src={image.preview} alt="" width="100%"/> :
+            <img src="/asset/svg/addimage.svg" alt="" width='70px' />
+          }
+          
           <input type="file" name="image" accept='image/*' onChange={handleImage} />
         </div>
         <input type="text" placeholder='Title' name="title" onChange={(e) => setTitle(e.target.value)} />
@@ -77,6 +85,25 @@ const Add = () => {
       <Footer />
     </>
   )
+}
+
+export const getServerSideProps = async (context) => {
+  const { token } = context.req.cookies
+
+  if(!token) {
+    return {
+      redirect : {
+        destination : '/auth/login',
+        permanent : true
+      }
+    }
+  }
+
+  return {
+    props : {
+      isLogin : true
+    }
+  }
 }
 
 export default Add

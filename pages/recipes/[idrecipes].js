@@ -7,7 +7,7 @@ import style from '../../styles/recipes.module.css'
 import {useRouter} from 'next/router'
 import axios from 'axios'
 
-const Idrecipes = () => {
+const Idrecipes = ({isLogin}) => {
     const router = useRouter()
     const { idrecipes } = router.query
     const [data, setData] = useState()
@@ -22,7 +22,7 @@ const Idrecipes = () => {
       }, [])
     return (
     <>
-        <Header />
+        <Header isLogin={isLogin}/>
         <div className={style.container}>
             <h1>{ data ? data.title : 'No Title'}</h1>
             <Image src={data ? data.image : '/asset/img/bread.png'} width="500px" height="400px" />
@@ -34,10 +34,15 @@ const Idrecipes = () => {
             </div>
             <div className={style.video}>
                 <h3>Video Steps</h3>
-                <video width="720" controls>
-                    <source src={data && data.video} type="video/mp4" />
-                    Your browser does not support HTML video.
-                </video>
+                {
+                    data ? (
+                        <video width="720" controls>
+                            <source src={data.video} type="video/mp4" />
+                            Your browser does not support HTML video.
+                        </video>
+                    ) : <h1>Loading Video...</h1>
+                }
+               
             </div>
             <div className={style.inputComment}>
                 <input type="text" placeholder='Comment :'/>
@@ -51,5 +56,24 @@ const Idrecipes = () => {
     </>
   )
 }
+
+export const getServerSideProps = async (context) => {
+    const { token } = context.req.cookies
+  
+    if(!token) {
+      return {
+        redirect : {
+          destination : '/auth/login',
+          permanent : true
+        }
+      }
+    }
+  
+    return {
+      props : {
+        isLogin : true
+      }
+    }
+  }
 
 export default Idrecipes
