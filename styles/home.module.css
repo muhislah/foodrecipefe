@@ -62,7 +62,9 @@
     gap: 20px;
     flex-wrap: wrap;
 }
-
+.pagination {
+    width: 100%;
+}
 @media screen and (max-width : 400px) {
     .yellow {
         width: 0;

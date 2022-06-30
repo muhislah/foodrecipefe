@@ -23,7 +23,7 @@ const Profile = ({ isLogin }) => {
     }
     const fetchData = async () => {
         try {
-            const result = await axios.get(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/', {
+            const result = await axios.get(process.env.NEXT_PUBLIC_BACKEND_API+'/profile/recipes/', {
                 withCredentials : true
             })
             setData(result.data.data)

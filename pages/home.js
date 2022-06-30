@@ -3,9 +3,10 @@ import { useEffect, useState } from "react"
 import CardHome from "../components/module/CardHome"
 import Footer from "../components/module/Footer"
 import Header from "../components/module/Header/Header"
+import Pagination from "../components/module/Pagination/Pagination"
 import style from "../styles/home.module.css"
 
-const Home = ({ data, isLogin }) => {
+const Home = ({ data, isLogin, pagination }) => {
   const [search, setSearch] = useState('')
   const router = useRouter()
   // const [data, setData] = useState([])
@@ -50,6 +51,9 @@ const Home = ({ data, isLogin }) => {
             data ? data.map((recipe) => <CardHome key={recipe.id} title={recipe.title} id={recipe.id} image={recipe.image} />) : <h1>Sorry No Recipe Found</h1>
           }
         </div>
+        <div className={style.pagination}>
+          <Pagination totalPage={pagination?.totalPage} currentPage={pagination?.page}/>
+        </div>
       </main>
       <Footer />
     </>
@@ -58,13 +62,15 @@ const Home = ({ data, isLogin }) => {
 
 export const getServerSideProps = async (context) => {
   const search = context.query.search || ""
-  const data = await fetch(process.env.NEXT_PUBLIC_BACKEND_API + '/recipe?search='+search)
+  const page = context.query.page
+  const data = await fetch(process.env.NEXT_PUBLIC_BACKEND_API + '/recipe?search='+search+'&page='+page)
   const result = await data.json()
   const { token } = context.req.cookies
   return {
     props: {
       data: result.data,
-      isLogin : token ? true : false
+      isLogin : token ? true : false,
+      pagination : result.pagination
   }
 }
 }
