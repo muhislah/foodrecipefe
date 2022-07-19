@@ -35,7 +35,9 @@ const Login = () => {
       } else if (result.data.message == "USERNAME OR PASSWORD WRONG") {
         alert('USER OR PASSWORD WRONG')
       } else {
-        const token = result.data.data.token
+        console.log("result adalah")
+        console.log(result)
+        const token = result
         const result = await fetch({
           method: 'POST',
           headers: {
