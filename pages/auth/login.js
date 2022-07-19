@@ -37,17 +37,18 @@ const Login = () => {
       } else {
         console.log("result adalah")
         console.log(result)
+        console.log("itu adalah result")
         const token = result
-        const result = await fetch({
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: {
-            token : token
-          }
-        })
+        // const result = await fetch({
+        //   method: 'POST',
+        //   headers: {
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json'
+        //   },
+        //   body: {
+        //     token : token
+        //   }
+        // })
         Swal.fire(
           'Good job!',
           'Log in Success',
