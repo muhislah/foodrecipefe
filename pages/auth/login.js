@@ -35,20 +35,24 @@ const Login = () => {
       } else if (result.data.message == "USERNAME OR PASSWORD WRONG") {
         alert('USER OR PASSWORD WRONG')
       } else {
-        console.log("result adalah")
-        console.log(result.data.data.token)
-        console.log("itu adalah result")
-        const token = result
-        // const result = await fetch({
-        //   method: 'POST',
-        //   headers: {
-        //     'Accept': 'application/json',
-        //     'Content-Type': 'application/json'
-        //   },
-        //   body: {
-        //     token : token
-        //   }
-        // })
+        const token = result.data.data.token
+        const result = await fetch({
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: {
+            token : token
+          }
+        })
+        if(!(result.login)) {
+          return Swal.fire(
+            'Caution!',
+            'Log in Failed',
+            'error'
+          )
+        }
         Swal.fire(
           'Good job!',
           'Log in Success',
