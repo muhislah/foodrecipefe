@@ -36,7 +36,7 @@ const Login = () => {
         alert('USER OR PASSWORD WRONG')
       } else {
         console.log("result adalah")
-        console.log(result)
+        console.log(result.data.data.token)
         console.log("itu adalah result")
         const token = result
         // const result = await fetch({
