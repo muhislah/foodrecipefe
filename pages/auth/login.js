@@ -37,32 +37,31 @@ const Login = () => {
         alert('USER OR PASSWORD WRONG')
       } else {
         const token = result.data.data.token
-        const cookie = await fetch({
-          url : "api/loginnext",
+        const data = {
+          token : token
+        }
+        const cookie = await fetch('/api/loginnext',{
           method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          body: {
-            token : token
-          }
+          body: JSON.stringify(data)
         })
         const isToken = await cookie.json()
-        console.log(isToken)
-        // if(!isToken) {
-        //   return Swal.fire(
-        //     'Caution!',
-        //     'Log in Failed',
-        //     'error'
-        //   )
-        // }
-        // Swal.fire(
-        //   'Good job!',
-        //   'Log in Success',
-        //   'success'
-        // )
-        // router.push('/home')
+        if(!isToken) {
+          return Swal.fire(
+            'Caution!',
+            'Log in Failed',
+            'error'
+          )
+        }
+        Swal.fire(
+          'Good job!',
+          'Log in Success',
+          'success'
+        )
+        router.push('/home')
       }
     } catch (error) {
       console.log(error)

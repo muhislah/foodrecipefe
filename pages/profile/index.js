@@ -70,6 +70,7 @@ const Profile = ({ isLogin }) => {
 
 export const getServerSideProps = async (context) => {
     const { token } = context.req.cookies
+    console.log(token)
     if (!token) {
         return {
             redirect: {
