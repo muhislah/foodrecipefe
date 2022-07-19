@@ -1,3 +1,12 @@
+import React from 'react'
+
+const AllrecipesWithId = () => {
+  return (
+    <div>AllrecipesWithId</div>
+  )
+}
+
+export default AllrecipesWithId
 // import Image from 'next/image'
 // import React, { useEffect, useState } from 'react'
 // import ReactPlayer from 'react-player'

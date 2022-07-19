@@ -1,3 +1,14 @@
+import React from 'react'
+
+const Allrecipes = () => {
+  return (
+    <div>Allrecipes</div>
+  )
+}
+
+export default Allrecipes
+
+
 // import { useRouter } from "next/router"
 // import { useEffect, useState } from "react"
 // import CardHome from "../components/module/CardHome"
