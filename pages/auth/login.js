@@ -35,18 +35,19 @@ const Login = () => {
       } else if (result.data.message == "USERNAME OR PASSWORD WRONG") {
         alert('USER OR PASSWORD WRONG')
       } else {
-        const token = result.data.data.token
-        const result = await fetch({
-          url : "api/loginnext",
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: {
-            token : token
-          }
-        })
+        // const token = result.data.data.token
+        console.log(result)
+        // const result = await fetch({
+        //   url : "api/loginnext",
+        //   method: 'POST',
+        //   headers: {
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json'
+        //   },
+        //   body: {
+        //     token : token
+        //   }
+        // })
         if(!(result.login)) {
           return Swal.fire(
             'Caution!',
