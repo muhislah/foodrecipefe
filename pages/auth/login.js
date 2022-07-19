@@ -48,20 +48,21 @@ const Login = () => {
             token : token
           }
         })
-        const isToken = await cookie.JSON()
-        if(!isToken) {
-          return Swal.fire(
-            'Caution!',
-            'Log in Failed',
-            'error'
-          )
-        }
-        Swal.fire(
-          'Good job!',
-          'Log in Success',
-          'success'
-        )
-        router.push('/home')
+        const isToken = await cookie.json()
+        console.log(isToken)
+        // if(!isToken) {
+        //   return Swal.fire(
+        //     'Caution!',
+        //     'Log in Failed',
+        //     'error'
+        //   )
+        // }
+        // Swal.fire(
+        //   'Good job!',
+        //   'Log in Success',
+        //   'success'
+        // )
+        // router.push('/home')
       }
     } catch (error) {
       console.log(error)
