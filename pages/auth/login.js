@@ -37,6 +37,7 @@ const Login = () => {
       } else {
         const token = result.data.data.token
         const result = await fetch({
+          url : "api/loginnext",
           method: 'POST',
           headers: {
             'Accept': 'application/json',
