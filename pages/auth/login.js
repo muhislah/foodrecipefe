@@ -29,6 +29,7 @@ const Login = () => {
         withCredentials: true
       }
       const result = await axios.post(process.env.NEXT_PUBLIC_BACKEND_API + '/auth/login', user, config)
+      console.log(result)
       if (result.data.message == "USER NOT REGISTERED") {
         alert('USER NOT REGISTERED')
         router.push('/auth/register')
@@ -36,7 +37,6 @@ const Login = () => {
         alert('USER OR PASSWORD WRONG')
       } else {
         // const token = result.data.data.token
-        console.log(result)
         // const result = await fetch({
         //   url : "api/loginnext",
         //   method: 'POST',
