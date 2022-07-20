@@ -6,7 +6,7 @@ import Button from '../../../components/base/Button/Index'
 import Footer from '../../../components/module/Footer'
 import Header from '../../../components/module/Header/Header'
 
-const Edit = ({ isLogin }) => {
+const Edit = ({ isLogin, token }) => {
     const fetchData = async () => {
         try {
             const result = await axios.get(process.env.NEXT_PUBLIC_BACKEND_API + '/recipe/' + router.query.idrecipe)
@@ -53,9 +53,10 @@ const Edit = ({ isLogin }) => {
             data.append('video', video.file)
             const config = {
                 headers: {
-                    'content-type': 'multipart/form-data'
+                    'content-type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}`
                 },
-                withCredentials: true
+                // withCredentials: true
             }
             const result = await axios.put(process.env.NEXT_PUBLIC_BACKEND_API + '/recipe/' + idrecipe, data, config)
             setUploading(false)
@@ -107,7 +108,8 @@ export const getServerSideProps = async (context) => {
 
     return {
         props: {
-            isLogin: true
+            isLogin: true,
+            token : token
         }
     }
 }

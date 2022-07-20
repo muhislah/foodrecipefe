@@ -6,7 +6,7 @@ import style from './../../styles/recipes.module.css'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 
-const Add = ({isLogin}) => {
+const Add = ({isLogin, token}) => {
   const router = useRouter()
   const [uploading, setUploading] = useState(false)
   const [image, setImage] = useState({})
@@ -38,9 +38,10 @@ const Add = ({isLogin}) => {
       data.append('video', video.file)
       const config = {
         headers: {
-          'content-type': 'multipart/form-data'
+          'content-type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`
         },
-        withCredentials : true
+        // withCredentials : true
       }
       const result = await axios.post(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/add', data , config)
       if (result.data.message === 'token invalid'){
@@ -101,7 +102,8 @@ export const getServerSideProps = async (context) => {
 
   return {
     props : {
-      isLogin : true
+      isLogin : true,
+      token : token
     }
   }
 }

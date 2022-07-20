@@ -5,12 +5,13 @@ import Image from 'next/image'
 import axios from 'axios'
 import TwitchPlayer from 'react-player/twitch'
 
-const Card = ({title, id, image}) => {
+const Card = ({title, id, image, token}) => {
   const router = useRouter()
   
   const handleDelete = async (id_recipe) => {
     const config = {
-      withCredentials : true
+      Authorization: `Bearer ${token}`
+      // withCredentials : true
     }
     try {
       console.log(id)

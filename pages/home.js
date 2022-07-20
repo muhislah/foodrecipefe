@@ -21,6 +21,15 @@ const Home = ({ data, isLogin, pagination }) => {
   // }, [])
   const handleSearch = (e) => {
     e.preventDefault()
+    if(!search){
+      return router.push({
+        pathname: '/home',
+        query : {
+          search : search
+        }
+      })
+    }
+    console.log('handlesearch')
     router.push({
       pathname: '/home',
       hash : "recipes",
@@ -28,6 +37,7 @@ const Home = ({ data, isLogin, pagination }) => {
         search : search
       }
     })
+    
   }
   return (
     <>
@@ -49,7 +59,7 @@ const Home = ({ data, isLogin, pagination }) => {
         <h1>Recently Recipe <Sorter /></h1>
         <div className={style.container}>
           {
-            data ? data.map((recipe) => <CardHome key={recipe.id} title={recipe.title} id={recipe.id} image={recipe.image} />) : <h1>Sorry No Recipe Found</h1>
+            data?.length > 0 ? data.map((recipe) => <CardHome key={recipe.id} title={recipe.title} id={recipe.id} image={recipe.image} />) : <h2>Sorry No Recipe Found</h2>
           }
         </div>
         <div className={style.pagination}>
