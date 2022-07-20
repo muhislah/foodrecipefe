@@ -6,6 +6,7 @@ const Sorter = () => {
     const router = useRouter()
     const [sortby, setSortby] = useState('title')
     const [sort, setSort] = useState('asc')
+    const [valueSort, setValueSort] = useState(['A - Z', 'Z - A'])
     useEffect(() => {
         router.push({
             pathname: '/home',
@@ -17,7 +18,15 @@ const Sorter = () => {
             }
         })
     }, [sortby, sort])
-
+    useEffect(()=> {
+        if(sortby === 'title'){
+            setValueSort(['A - Z', 'Z - A'])
+        }else if (sortby === 'post_at'){
+            setValueSort(['Oldest','Newest'])
+        }else {
+            setValueSort(['Last User','New User'])
+        }
+    },[sortby])
     return (
         <div className={style.group}>
             <select name="sortby" id="sortby" className={style.minimal} onChange={(e) => setSortby(e.target.value)}>
@@ -26,8 +35,8 @@ const Sorter = () => {
                 <option value="id_user">User</option>
             </select>
             <select name="sort" id="sort" className={style.minimal} onChange={(e) => setSort(e.target.value)}>
-                <option value="asc">a-z</option>
-                <option value="desc">z-a</option>
+                <option value="asc">{valueSort[0]}</option>
+                <option value="desc">{valueSort[1]}</option>
             </select>
         </div>
     )
