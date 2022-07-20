@@ -8,14 +8,18 @@ import TwitchPlayer from 'react-player/twitch'
 const Card = ({title, id, image, token}) => {
   const router = useRouter()
   
-  const handleDelete = async (id_recipe) => {
+  const handleDelete = async (id_recipe, token) => {
     const config = {
       Authorization: `Bearer ${token}`
       // withCredentials : true
     }
     try {
       console.log(id)
-      const result = await axios.delete(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/'+id_recipe, config)
+      const result = await axios.delete(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/'+id_recipe, {
+        headers : {
+          ...config
+        }
+      })
       alert('Delete Success')
       router.push('/home')
     } catch (error) {
@@ -30,7 +34,7 @@ const Card = ({title, id, image, token}) => {
           <div onClick={() => router.push('/recipes/edit/'+id)}>
             <img src="/asset/svg/editcard.svg" alt="edit" />
           </div>
-          <div onClick={() => handleDelete(id)}>
+          <div onClick={() => handleDelete(id, token)}>
           <img src="/asset/svg/deletecard.svg" alt="delete" />
           </div>
         </div>
