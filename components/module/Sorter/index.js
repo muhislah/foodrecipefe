@@ -26,8 +26,8 @@ const Sorter = () => {
                 <option value="id_user">User</option>
             </select>
             <select name="sort" id="sort" className={style.minimal} onChange={(e) => setSort(e.target.value)}>
-                <option value="asc">A-Z</option>
-                <option value="desc">Z-A</option>
+                <option value="asc">a-z</option>
+                <option value="desc">z-a</option>
             </select>
         </div>
     )
