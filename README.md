@@ -25,7 +25,7 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Related Project](#related-project-backend)
+* [Related Project](#related-project)
 * [Screenshot](#screenshot)
 * [Contact](#contact)
 
@@ -82,8 +82,17 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/yourbranch`)
 5. Open a Pull Request
 
+<!-- SCREENSHOT -->
+## Screenshot
+![add recipe](/images/add.png?raw=true "Add Recipe Page")
+![detail recipe](/images/detail.png?raw=true "Detail Recipe Page")
+![landing](/images/landing.png?raw=true "Landing Page")
+![login](/images/login.png?raw=true "Login Page")
+![profile](/images/profile.png?raw=true "Profile Page")
+![allrecipe](/images/recipe.png?raw=true "Recipe Page")
 
 
+<!-- RELATED PROJECT -->
 ## Related Project
 * [`Mama Recipe Demo`](https://foodrecipefe.vercel.app/)
 * [`Mama Recipe Rest API`](https://food-recipe-be.herokuapp.com)
