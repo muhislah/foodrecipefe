@@ -85,7 +85,7 @@ Contributions are what make the open source community such an amazing place to b
 <!-- SCREENSHOT -->
 ## Screenshot
 | Add Recipe Page |
-| ------------- |
+
 | ![add recipe](/images/add.png?raw=true "Add Recipe Page") |
 | Detail Page |
 | ------------- |
