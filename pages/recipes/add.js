@@ -5,6 +5,7 @@ import Header from '../../components/module/Header/Header'
 import style from './../../styles/recipes.module.css'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import Swal from 'sweetalert2'
 
 const Add = ({isLogin, token}) => {
   const router = useRouter()
@@ -45,11 +46,19 @@ const Add = ({isLogin, token}) => {
       }
       const result = await axios.post(process.env.NEXT_PUBLIC_BACKEND_API+'/recipe/add', data , config)
       if (result.data.message === 'token invalid'){
-        alert('Token Invalid, Add Recipe Failed, Please Login First')
+        Swal.fire(
+          'Caution!',
+          'Add Failed, Please Login First',
+          'error'
+        )
         return router.push('/auth/login')
       }
       setUploading(false)
-      alert('Add New Recipe Success')
+      Swal.fire(
+        'Good Job',
+        'Add New Recipe Success',
+        'success'
+      )
       router.push('/home')
     } catch (error) {
       console.log(error)

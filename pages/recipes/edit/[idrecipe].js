@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import Button from '../../../components/base/Button/Index'
 import Footer from '../../../components/module/Footer'
 import Header from '../../../components/module/Header/Header'
+import Swal from 'sweetalert2'
 
 const Edit = ({ isLogin, token }) => {
     const fetchData = async () => {
@@ -60,7 +61,11 @@ const Edit = ({ isLogin, token }) => {
             }
             const result = await axios.put(process.env.NEXT_PUBLIC_BACKEND_API + '/recipe/' + idrecipe, data, config)
             setUploading(false)
-            alert('Edit Recipe Success')
+            Swal.fire(
+                'Good Job',
+                'Edit Recipe Success',
+                'success'
+              )
             router.push('/home')
         } catch (error) {
             console.log(error)

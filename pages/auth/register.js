@@ -32,10 +32,18 @@ const Register = () => {
       }
       const result = await axios.post(process.env.NEXT_PUBLIC_BACKEND_API+'/auth/register', user, config)
       if(result.data.message == 'USER HAS BEEN REGISTERED') {
-        alert('USER HAS BEEN REGISTERED, PLEASE LOGIN')
+        Swal.fire(
+          'Caution!',
+          'Email Has Been Registered, Please Login',
+          'error'
+        )
         router.push('/auth/login')
       }else {
-        alert('REGISTER SUCCESS')
+        Swal.fire(
+          'Good Job',
+          'Register Success',
+          'success'
+        )
         router.push('/auth/login')
       }
     } catch (error) {

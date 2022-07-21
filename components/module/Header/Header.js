@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import style from './style.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Swal from 'sweetalert2'
 
 const Header = ({isLogin}) => {
   const router = useRouter()
@@ -10,6 +11,11 @@ const Header = ({isLogin}) => {
       const result = await fetch('api/logout')
       const{ logout } = await result.json()
       if (logout) {
+        Swal.fire(
+          'Success',
+          'User Logout',
+          'success'
+        )
         router.push('/auth/login')
       }
     } catch (error) {

@@ -61,7 +61,7 @@ const Profile = ({ isLogin, token }) => {
                         <p><Link href='/profile/edit'>Change password</Link></p>
                     </div>
                 </div>
-                <h2 style={{ margin: "40px auto", textAlign: 'center' }}>{profile ? profile.fullname : 'No Name'}</h2>
+                <h2 style={{ margin: "40px auto", textAlign: 'center' }}>{profile?.fullname ? profile.fullname : '...'}</h2>
                 <div className={style.navigation}>
                     <ul>
                         <li className={selected == 'my recipe' ? style.recipeActive : ''} onClick={() => setSelected('my recipe')}>My Recipe</li>
@@ -70,7 +70,7 @@ const Profile = ({ isLogin, token }) => {
                     </ul>
                     <div className={style.area}>
                         {
-                            data ? data.map((recipe) => <Card key={recipe.id} title={recipe.title} id={recipe.id} image={recipe.image} token={token} />) : <h1>Sorry No Recipe Found</h1>
+                            data?.length > 0 ? data.map((recipe) => <Card key={recipe.id} title={recipe.title} id={recipe.id} image={recipe.image} token={token} />) : <h2>Sorry No Recipe Found</h2>
                         }
                     </div>
                 </div>

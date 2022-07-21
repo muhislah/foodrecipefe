@@ -31,10 +31,18 @@ const Login = () => {
       const result = await axios.post(process.env.NEXT_PUBLIC_BACKEND_API + '/auth/login', user, config)
       console.log(result)
       if (result.data.message == "USER NOT REGISTERED") {
-        alert('USER NOT REGISTERED')
+        Swal.fire(
+          'Caution!',
+          'User Not Registered, Register First',
+          'error'
+        )
         router.push('/auth/register')
       } else if (result.data.message == "USERNAME OR PASSWORD WRONG") {
-        alert('USER OR PASSWORD WRONG')
+        return Swal.fire(
+          'Caution!',
+          'Email or Password Error',
+          'error'
+        )
       } else {
         const token = result.data.data.token
         const data = {
@@ -57,7 +65,7 @@ const Login = () => {
           )
         }
         Swal.fire(
-          'Good job!',
+          'Good Job',
           'Log in Success',
           'success'
         )
