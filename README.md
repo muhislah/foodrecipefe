@@ -70,7 +70,6 @@ NEXT_PUBLIC_BACKEND_API = https://food-recipe-be.herokuapp.com // or use your ow
 
 ```
 
-
 <!-- CONTRIBUTING -->
 ## Contributing
 

@@ -47,7 +47,7 @@ const Register = () => {
         router.push('/auth/login')
       }
     } catch (error) {
-      
+      console.log(error)
     }
   }
   return (
