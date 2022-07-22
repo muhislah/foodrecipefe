@@ -6,6 +6,7 @@ import style from './../../styles/auth.module.css'
 import Link from 'next/link'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import Swal from 'sweetalert2'
 
 const Register = () => {
   const router = useRouter()
@@ -28,7 +29,8 @@ const Register = () => {
     }
     try {
       const result = await axios.post(process.env.NEXT_PUBLIC_BACKEND_API+'/auth/register', user)
-      if(result.data.message == 'USER HAS BEEN REGISTERED') {
+      console.log(result)
+      if(result.data.message === 'USER HAS BEEN REGISTERED') {
         Swal.fire(
           'Caution!',
           'Email Has Been Registered, Please Login',

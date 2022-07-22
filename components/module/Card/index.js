@@ -4,6 +4,8 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 import axios from 'axios'
 import TwitchPlayer from 'react-player/twitch'
+import Swal from 'sweetalert2'
+
 
 const Card = ({title, id, image, token}) => {
   const router = useRouter()
@@ -20,7 +22,11 @@ const Card = ({title, id, image, token}) => {
           ...config
         }
       })
-      alert('Delete Success')
+      Swal.fire(
+        'Good Job',
+        'Delete Success',
+        'success'
+      )
       router.push('/home')
     } catch (error) {
       console.log(error)
