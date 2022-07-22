@@ -27,10 +27,7 @@ const Register = () => {
       e.preventDefault()
     }
     try {
-      const config = {
-        withCredentials : true
-      }
-      const result = await axios.post(process.env.NEXT_PUBLIC_BACKEND_API+'/auth/register', user, config)
+      const result = await axios.post(process.env.NEXT_PUBLIC_BACKEND_API+'/auth/register', user)
       if(result.data.message == 'USER HAS BEEN REGISTERED') {
         Swal.fire(
           'Caution!',
